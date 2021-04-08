@@ -227,5 +227,26 @@ namespace Project2_Client_GUI
         }
 
 
+        public string get_Result_Str(int index)
+        {
+            int max_Result = data_Sets[index].get_Result();
+
+            return max_Result.ToString();
+        }
+
+
+        public string get_Route_Str(int index)
+        {
+            string route_Str = "";
+            int[] route = data_Sets[index].get_Route();
+            for(int i = 0; i < route.Length; i++)
+            {
+                route_Str += route[i].ToString() + "&";
+            }
+            route_Str += route[route.Length - 1].ToString();
+            return route_Str;
+        }
+
+
     }
 }

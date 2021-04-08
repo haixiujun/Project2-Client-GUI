@@ -14,6 +14,7 @@ namespace Project2_Client_GUI
         private IPEndPoint server_Interface;
         private Socket link_To_Server;
         private int receive_Count;
+        private int connect_State;
 
         public NetworkSendData()
         {
@@ -21,15 +22,21 @@ namespace Project2_Client_GUI
             server_Interface = new IPEndPoint(server_IP.AddressList[0], 40400);
             link_To_Server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         }
+        public int get_Connect_State()
+        {
+            return connect_State;
+        }
 
         public void connect_To_Server()
         {
             try
             {
                 link_To_Server.Connect(server_Interface);
+                connect_State = 1;
             }catch(Exception e)
             {
                 Console.WriteLine(e.ToString());
+                connect_State = 0;
             }
         }
 
@@ -48,7 +55,7 @@ namespace Project2_Client_GUI
         {
             try
             {
-                link_To_Server.Send(System.Text.Encoding.UTF8.GetBytes(s));
+                link_To_Server.Send(Encoding.UTF8.GetBytes(s));
             }catch(Exception e)
             {
                 Console.WriteLine(e.ToString());

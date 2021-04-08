@@ -106,5 +106,43 @@ namespace Project2_Client_GUI
             int index = listBox1.SelectedIndex;
             dataExtraction.out_Put_To_Excel(index, saveFileDialog2.FileName);
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            server_Linker = new NetworkSendData();
+            server_Linker.connect_To_Server();
+            int state = server_Linker.get_Connect_State();
+            if (state == 1)
+            {
+                MessageBox.Show("Connect Successful!");
+            }
+            else
+            {
+                MessageBox.Show("Connect Error!");
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            server_Linker.send_Data_To_Server("Hello World");
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            int index = listBox1.SelectedIndex;
+            int result = dataExtraction.get_Result(index);
+            server_Linker.send_Data_To_Server(result.ToString());
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            int index = listBox1.SelectedIndex;
+            server_Linker.send_Data_To_Server(dataExtraction.get_Route_Str(index));
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            server_Linker.disconnect_To_Server();
+        }
     }
 }
