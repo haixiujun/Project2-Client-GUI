@@ -45,6 +45,10 @@ namespace Project2_Client_GUI
             this.button5 = new System.Windows.Forms.Button();
             this.listBox3 = new System.Windows.Forms.ListBox();
             this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.saveFileDialog2 = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -191,11 +195,41 @@ namespace Project2_Client_GUI
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(549, 97);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(253, 23);
+            this.button7.TabIndex = 15;
+            this.button7.Text = "Result_Out_Put_To_TXT";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(549, 138);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(253, 23);
+            this.button8.TabIndex = 16;
+            this.button8.Text = "Result_Out_Put_To_Excel";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "txt文件|*.txt";
+            // 
+            // saveFileDialog2
+            // 
+            this.saveFileDialog2.Filter = "Excel文件|*.xlxs";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1097, 509);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.listBox3);
             this.Controls.Add(this.button5);
@@ -237,5 +271,9 @@ namespace Project2_Client_GUI
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ListBox listBox3;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog2;
     }
 }

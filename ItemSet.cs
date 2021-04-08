@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project2_Client_GUI
 {
-    class ItemSet
+    public class ItemSet
     {
         private List<Article> articles;
         public ItemSet(int[] profit_Array,int[] weight_Array)

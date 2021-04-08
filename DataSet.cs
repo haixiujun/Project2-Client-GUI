@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project2_Client_GUI
 {
-    class DataSet
+    public class DataSet
     {
         private int c;
         private int item_Set_Count;

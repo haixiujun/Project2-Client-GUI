@@ -89,6 +89,17 @@ namespace Project2_Client_GUI
 
         private void button6_Click(object sender, EventArgs e)
         {
+            int index = listBox1.SelectedIndex;
+            dataExtraction.create_Scatter_Chart(index);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
 
         }
     }

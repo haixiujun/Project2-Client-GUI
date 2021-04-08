@@ -183,6 +183,21 @@ namespace Project2_Client_GUI
             sortByTheThirdItem.start_Sort();
         }
 
+        public void create_Scatter_Chart(int index)
+        {
+            Form3 form3 = new Form3(data_Sets[index]);
+            form3.Show();
+        }
+
+        public void out_Put_To_Exe(int index,string file_Path)
+        {
+
+        }
+
+        public void out_Put_To_Excel(int index,string file_Path)
+        {
+
+        }
 
 
     }
