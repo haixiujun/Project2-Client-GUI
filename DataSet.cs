@@ -16,7 +16,7 @@ namespace Project2_Client_GUI
         private int[,] dynamic_Array;
         private int[] temp_Route;
         private double process_Time;
-
+        private int is_Dynamic;
         public int get_Result()
         {
             return maximum_Value;
@@ -71,6 +71,7 @@ namespace Project2_Client_GUI
 
         public void dynamic_Programming_Method()
         {
+            is_Dynamic = 1;
             maximum_Value = 0;
             route = new int[item_Set_Count];
             DateTime start_Time = DateTime.Now;
@@ -142,9 +143,19 @@ namespace Project2_Client_GUI
             }
         }
 
+        public int[,] get_Dynamic_Arrays()
+        {
+            return dynamic_Array;
+        }
+
+        public int get_Is_Dynmaic()
+        {
+            return is_Dynamic;
+        }
 
         public void backtracking_Method()
         {
+            is_Dynamic = 0;
             maximum_Value = 0;
             DateTime start_Time = DateTime.Now;
             route = new int[item_Set_Count];
@@ -158,14 +169,9 @@ namespace Project2_Client_GUI
 
             //开始进行回溯
             back_Trace(0, 0, 0);
-
-            for(int i = 0; i < item_Set_Count; i++)
-            {
-                route[i] = temp_Route[i];
-            }
             DateTime end_Time = DateTime.Now;
             process_Time = (end_Time - start_Time).TotalSeconds;
-        }
+        }  
 
 
         //递归函数

@@ -189,14 +189,41 @@ namespace Project2_Client_GUI
             form3.Show();
         }
 
-        public void out_Put_To_Exe(int index,string file_Path)
+        public void out_Put_To_Txt(int index,string file_Path)
         {
+            int max_Result = data_Sets[index].get_Result();
+            int[] route = data_Sets[index].get_Route();
+            int is_Dynamic = data_Sets[index].get_Is_Dynmaic();
+            OutputToFile outputToFile;
+            if (is_Dynamic == 1)
+            {
+                int[,] temp_Dynamic_Array= data_Sets[index].get_Dynamic_Arrays();
+                outputToFile = new OutputToFile(file_Path,max_Result,route,temp_Dynamic_Array);
+            }
+            else
+            {
+                outputToFile = new OutputToFile(file_Path, max_Result, route);
+            }
+            outputToFile.out_To_Txt();
 
         }
 
         public void out_Put_To_Excel(int index,string file_Path)
         {
-
+            int max_Result = data_Sets[index].get_Result();
+            int[] route = data_Sets[index].get_Route();
+            int is_Dynamic = data_Sets[index].get_Is_Dynmaic();
+            OutputToFile outputToFile;
+            if (is_Dynamic == 1)
+            {
+                int[,] temp_Dynamic_Array = data_Sets[index].get_Dynamic_Arrays();
+                outputToFile = new OutputToFile(file_Path, max_Result, route, temp_Dynamic_Array);
+            }
+            else
+            {
+                outputToFile = new OutputToFile(file_Path, max_Result, route);
+            }
+            outputToFile.out_To_Excel();
         }
 
 

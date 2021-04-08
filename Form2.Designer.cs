@@ -221,7 +221,7 @@ namespace Project2_Client_GUI
             // 
             // saveFileDialog2
             // 
-            this.saveFileDialog2.Filter = "Excel文件|*.xlxs";
+            this.saveFileDialog2.Filter = "Excel文件|*.xlsx";
             // 
             // Form2
             // 

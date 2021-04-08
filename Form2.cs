@@ -95,12 +95,16 @@ namespace Project2_Client_GUI
 
         private void button7_Click(object sender, EventArgs e)
         {
-
+            saveFileDialog1.ShowDialog();
+            int index = listBox1.SelectedIndex;
+            dataExtraction.out_Put_To_Txt(index,saveFileDialog1.FileName);
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-
+            saveFileDialog2.ShowDialog();
+            int index = listBox1.SelectedIndex;
+            dataExtraction.out_Put_To_Excel(index, saveFileDialog2.FileName);
         }
     }
 }
