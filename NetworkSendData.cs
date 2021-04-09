@@ -18,8 +18,8 @@ namespace Project2_Client_GUI
 
         public NetworkSendData()
         {
-            server_IP = Dns.GetHostEntry("jiaaoyang.top");
-            server_Interface = new IPEndPoint(server_IP.AddressList[0], 40400);
+            //server_IP = Dns.GetHostEntry("localhost");
+            server_Interface = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 40400);
             link_To_Server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         }
         public int get_Connect_State()

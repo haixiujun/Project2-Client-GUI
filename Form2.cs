@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,7 +25,7 @@ namespace Project2_Client_GUI
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -115,11 +116,20 @@ namespace Project2_Client_GUI
             if (state == 1)
             {
                 MessageBox.Show("Connect Successful!");
+                ThreadPool.QueueUserWorkItem((obj) =>
+                {
+                    while (true)
+                    {
+                        MessageBox.Show(server_Linker.read_Data_From_Server());
+                    }
+
+                });
             }
             else
             {
                 MessageBox.Show("Connect Error!");
             }
+            
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -143,6 +153,13 @@ namespace Project2_Client_GUI
         private void button13_Click(object sender, EventArgs e)
         {
             server_Linker.disconnect_To_Server();
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            string message = textBox3.Text;
+            server_Linker.send_Data_To_Server(message);
+
         }
     }
 }

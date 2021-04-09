@@ -54,6 +54,9 @@ namespace Project2_Client_GUI
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -278,11 +281,38 @@ namespace Project2_Client_GUI
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(332, 373);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(210, 23);
+            this.button14.TabIndex = 22;
+            this.button14.Text = "Send Message";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(20, 372);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(301, 23);
+            this.textBox3.TabIndex = 23;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(20, 402);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(301, 23);
+            this.textBox4.TabIndex = 24;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1097, 509);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.button14);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button11);
@@ -340,5 +370,8 @@ namespace Project2_Client_GUI
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }
