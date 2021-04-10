@@ -21,6 +21,13 @@ namespace Project2_Client_GUI
         public Form2()
         {
             InitializeComponent();
+
+
+        }
+
+        public void init_NSD(NetworkSendData nsd)
+        {
+            server_Linker = nsd;
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -34,12 +41,14 @@ namespace Project2_Client_GUI
             selected_File_Path = openFileDialog1.FileName;
             textBox1.Text = selected_File_Path;
             dataExtraction = new DataExtraction(selected_File_Path);
+            server_Linker.init_DE(dataExtraction);
             listBox1.Items.Clear();
             dataExtraction.read_From_Selected_File_Path();
-            for(int i = 0; i < dataExtraction.get_Data_Set_Count(); i++)
+            for (int i = 0; i < dataExtraction.get_Data_Set_Count(); i++)
             {
                 listBox1.Items.Add("DataSet-" + (i + 1).ToString());
             }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -50,30 +59,38 @@ namespace Project2_Client_GUI
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int index = listBox1.SelectedIndex;
-            dataExtraction.dynamic_Deal(index);
-            int result = dataExtraction.get_Result(index);
-            textBox2.Text = result.ToString();
-            int[] selected = dataExtraction.get_Route(index);
-            listBox2.Items.Clear();
-            for (int i = 0; i < dataExtraction.get_items_Set_Count(index); i++)
+            ThreadPool.QueueUserWorkItem((obj) =>
             {
-                listBox2.Items.Add((i+1).ToString()+":"+selected[i].ToString());
-            }
+                int index = listBox1.SelectedIndex;
+                dataExtraction.dynamic_Deal(index);
+                int result = dataExtraction.get_Result(index);
+                textBox2.Text = result.ToString();
+                int[] selected = dataExtraction.get_Route(index);
+                listBox2.Items.Clear();
+                for (int i = 0; i < dataExtraction.get_items_Set_Count(index); i++)
+                {
+                    listBox2.Items.Add((i + 1).ToString() + ":" + selected[i].ToString());
+                }
+            });
+           
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            int index = listBox1.SelectedIndex;
-            dataExtraction.backTracking_Deal(index);
-            int result = dataExtraction.get_Result(index);
-            textBox2.Text = result.ToString();
-            int[] selected = dataExtraction.get_Route(index);
-            listBox2.Items.Clear();
-            for (int i = 0; i < dataExtraction.get_items_Set_Count(index); i++)
+            ThreadPool.QueueUserWorkItem((obj) =>
             {
-                listBox2.Items.Add((i + 1).ToString() + ":" + selected[i].ToString());
-            }
+                int index = listBox1.SelectedIndex;
+                dataExtraction.backTracking_Deal(index);
+                int result = dataExtraction.get_Result(index);
+                textBox2.Text = result.ToString();
+                int[] selected = dataExtraction.get_Route(index);
+                listBox2.Items.Clear();
+                for (int i = 0; i < dataExtraction.get_items_Set_Count(index); i++)
+                {
+                    listBox2.Items.Add((i + 1).ToString() + ":" + selected[i].ToString());
+                }
+            });
+               
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -112,36 +129,21 @@ namespace Project2_Client_GUI
         {
             server_Linker = new NetworkSendData();
             server_Linker.connect_To_Server();
-            int state = server_Linker.get_Connect_State();
-            if (state == 1)
-            {
-                MessageBox.Show("Connect Successful!");
-                ThreadPool.QueueUserWorkItem((obj) =>
-                {
-                    while (true)
-                    {
-                        MessageBox.Show(server_Linker.read_Data_From_Server());
-                    }
-
-                });
-            }
-            else
-            {
-                MessageBox.Show("Connect Error!");
-            }
+           
             
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
-            server_Linker.send_Data_To_Server("Hello World");
+            int index = listBox1.SelectedIndex;
+            server_Linker.RSW(openFileDialog1.SafeFileName,index);
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
             int index = listBox1.SelectedIndex;
-            int result = dataExtraction.get_Result(index);
-            server_Linker.send_Data_To_Server(result.ToString());
+            server_Linker.DSW(openFileDialog1.SafeFileName,index);
+            //server_Linker.send_Data_To_Server(result.ToString());
         }
 
         private void button12_Click(object sender, EventArgs e)
@@ -157,9 +159,14 @@ namespace Project2_Client_GUI
 
         private void button14_Click(object sender, EventArgs e)
         {
-            string message = textBox3.Text;
-            server_Linker.send_Data_To_Server(message);
+            
 
+        }
+
+        private void Form2_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            server_Linker.send_Data_To_Server("END");
+            Application.Exit();
         }
     }
 }

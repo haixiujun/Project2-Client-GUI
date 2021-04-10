@@ -44,9 +44,9 @@ namespace Project2_Client_GUI
         public string To_String()
         {
             string ret_Str = "";
-            ret_Str += profit.ToString() + ",";
-            ret_Str += weight.ToString() + ",";
-            ret_Str += radio.ToString()+"#";
+            ret_Str += profit.ToString() + "#";
+            ret_Str += weight.ToString() + "#";
+            ret_Str += radio.ToString()+"@";
             return ret_Str;
         }
 

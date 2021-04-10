@@ -22,6 +22,12 @@ namespace Project2_Client_GUI
             return maximum_Value;
         }
 
+        public string[] get_Item_Set_Str(int index)
+        {
+            return item_Sets[index].To_String().Split("@");
+        }
+
+
        public int get_Item_Sets_Count()
         {
             return item_Set_Count;

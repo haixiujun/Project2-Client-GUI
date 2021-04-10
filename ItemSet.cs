@@ -42,7 +42,7 @@ namespace Project2_Client_GUI
             {
                 ret_Str += articles[i].To_String();
             }
-            ret_Str += "@";
+            ret_Str=ret_Str.Substring(0, ret_Str.Length - 1);
             return ret_Str;
         }
 

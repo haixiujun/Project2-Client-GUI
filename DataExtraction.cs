@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project2_Client_GUI
 {
-    class DataExtraction
+    public class DataExtraction
     {
         private string selected_File_Path;
         private int number_Of_Original_File_Lines;
@@ -20,10 +20,26 @@ namespace Project2_Client_GUI
             selected_File_Path = path;
         }
 
+        public string[] get_DSW_Str(int index,int item_Ser)
+        {
+            return data_Sets[index].get_Item_Set_Str(item_Ser);
+        }
+
+        public string get_RSW_Str(int index)
+        {
+            string ret_Str = "";
+            ret_Str += index + "#";
+            ret_Str += data_Sets[index].get_Item_Sets_Count().ToString() + "#";
+            ret_Str += data_Sets[index].get_Cubage().ToString() + "#";
+            ret_Str += data_Sets[index].get_Result().ToString();
+            return ret_Str;
+        }
+
+
         public string get_Base_Data(int index)
         {
             string temp = "Item Sets Counts:";
-            temp += data_Sets[index].get_Item_Sets_Count().ToString()+" Bag Cubage:"+data_Sets[index].get_Cubage();
+            temp += data_Sets[index].get_Item_Sets_Count().ToString()+" Bag Cubage:"+data_Sets[index].get_Cubage().ToString();
             return temp;
 
 

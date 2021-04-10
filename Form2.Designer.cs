@@ -55,8 +55,7 @@ namespace Project2_Client_GUI
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.listBox4 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -96,7 +95,7 @@ namespace Project2_Client_GUI
             this.listBox1.ItemHeight = 17;
             this.listBox1.Location = new System.Drawing.Point(20, 38);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(235, 327);
+            this.listBox1.Size = new System.Drawing.Size(235, 276);
             this.listBox1.TabIndex = 3;
             // 
             // button2
@@ -135,7 +134,7 @@ namespace Project2_Client_GUI
             this.listBox2.ItemHeight = 17;
             this.listBox2.Location = new System.Drawing.Point(332, 175);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(210, 191);
+            this.listBox2.Size = new System.Drawing.Size(210, 140);
             this.listBox2.TabIndex = 7;
             // 
             // label2
@@ -190,7 +189,7 @@ namespace Project2_Client_GUI
             this.listBox3.ItemHeight = 17;
             this.listBox3.Location = new System.Drawing.Point(809, 37);
             this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(252, 327);
+            this.listBox3.Size = new System.Drawing.Size(252, 276);
             this.listBox3.TabIndex = 13;
             // 
             // button6
@@ -247,7 +246,7 @@ namespace Project2_Client_GUI
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(253, 23);
             this.button10.TabIndex = 18;
-            this.button10.Text = "Send A Hello World";
+            this.button10.Text = "Send Selected Set Result";
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
@@ -257,7 +256,7 @@ namespace Project2_Client_GUI
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(253, 23);
             this.button11.TabIndex = 19;
-            this.button11.Text = "Send Max Result";
+            this.button11.Text = "Send Seleted Data Set ";
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
@@ -283,35 +282,29 @@ namespace Project2_Client_GUI
             // 
             // button14
             // 
-            this.button14.Location = new System.Drawing.Point(332, 373);
+            this.button14.Location = new System.Drawing.Point(275, 321);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(210, 23);
+            this.button14.Size = new System.Drawing.Size(267, 23);
             this.button14.TabIndex = 22;
-            this.button14.Text = "Send Message";
+            this.button14.Text = "Get all the results";
             this.button14.UseVisualStyleBackColor = true;
             this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
-            // textBox3
+            // listBox4
             // 
-            this.textBox3.Location = new System.Drawing.Point(20, 372);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(301, 23);
-            this.textBox3.TabIndex = 23;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(20, 402);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(301, 23);
-            this.textBox4.TabIndex = 24;
+            this.listBox4.FormattingEnabled = true;
+            this.listBox4.ItemHeight = 17;
+            this.listBox4.Location = new System.Drawing.Point(20, 321);
+            this.listBox4.Name = "listBox4";
+            this.listBox4.Size = new System.Drawing.Size(235, 174);
+            this.listBox4.TabIndex = 23;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1097, 509);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.listBox4);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.button12);
@@ -337,6 +330,7 @@ namespace Project2_Client_GUI
             this.Controls.Add(this.label1);
             this.Name = "Form2";
             this.Text = "D01KP-PlatForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -371,7 +365,6 @@ namespace Project2_Client_GUI
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.ListBox listBox4;
     }
 }
