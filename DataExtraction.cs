@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,6 +21,18 @@ namespace Project2_Client_GUI
         {
             selected_File_Path = path;
         }
+
+        public void set_Result(int index,int num)
+        {
+            data_Sets[index].set_Max_Value(num);
+           
+        }
+
+        public void set_Route(int index,int[] selected)
+        {
+            data_Sets[index].set_Selected(selected);
+        }
+
 
         public string[] get_DSW_Str(int index,int item_Ser)
         {
@@ -261,6 +275,56 @@ namespace Project2_Client_GUI
             }
             route_Str += route[route.Length - 1].ToString();
             return route_Str;
+        }
+
+        public string genetic_Algorithm(int index)
+        {
+            StreamWriter sw = new StreamWriter("data.txt");
+            int item_Set_Count = data_Sets[index].get_Item_Sets_Count();
+            int cubage = data_Sets[index].get_Cubage();
+            string profit = data_Sets[index].get_All_Profit_Str();
+            string weight = data_Sets[index].get_All_Weight_Str();
+            try
+            {
+                sw.WriteLine(item_Set_Count);
+                sw.WriteLine(cubage);
+                sw.WriteLine(profit);
+                sw.WriteLine(weight);
+                sw.Close();
+                using (Process p = new Process())
+                {
+
+                    p.StartInfo.FileName = @"./Test1.exe";//可执行程序路径
+                    p.StartInfo.Arguments = "";//参数以空格分隔，如果某个参数为空，可以传入""
+                    p.StartInfo.UseShellExecute = false;//是否使用操作系统shell启动
+                    p.StartInfo.CreateNoWindow = true;//不显示程序窗口
+                    p.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息
+                    p.StartInfo.RedirectStandardInput = true;   //接受来自调用程序的输入信息
+                    p.StartInfo.RedirectStandardError = true;   //重定向标准错误输出
+                    p.Start();
+                    p.WaitForExit();
+                    //正常运行结束放回代码为0
+                    string result = "";
+                    if (p.ExitCode == 0)
+                    {
+                        result = p.StandardOutput.ReadToEnd();
+                        return result;
+                    }
+                }
+
+
+
+            }
+            catch(Exception e)
+            {
+
+            }
+            finally
+            {
+                
+            }
+            return "ERROR";
+           
         }
 
 

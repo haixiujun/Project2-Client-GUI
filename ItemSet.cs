@@ -20,6 +20,28 @@ namespace Project2_Client_GUI
             }
         }
 
+        public string get_All_Profit_Str()
+        {
+            string result = "";
+            for(int i = 0; i < 3; i++)
+            {
+                result += articles[i].get_Profit()+" ";
+            }
+
+            return result;
+        }
+
+        public string get_All_Weight_Str()
+        {
+            string result = "";
+            for (int i = 0; i < 3; i++)
+            {
+                result += articles[i].get_Weight() + " ";
+            }
+
+            return result;
+        }
+
         public int get_Profit(int index)
         {
             return articles[index].get_Profit();

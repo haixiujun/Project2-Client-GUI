@@ -22,6 +22,45 @@ namespace Project2_Client_GUI
             return maximum_Value;
         }
 
+        public void set_Max_Value(int num)
+        {
+            maximum_Value = num;
+        }
+
+        public void set_Selected(int[] selected)
+        {
+            route = new int[item_Set_Count];
+            for (int i = 0; i < item_Set_Count; i++)
+            {
+                route[i] = selected[i];
+            }
+        }
+
+
+        public string get_All_Weight_Str()
+        {
+            string ret = "";
+            for (int i = 0; i < item_Set_Count; i++)
+            {
+                ret += item_Sets[i].get_All_Weight_Str();
+            }
+            ret = ret.Substring(0, ret.Length - 1);
+
+            return ret;
+        }
+
+        public string get_All_Profit_Str()
+        {
+            string ret = "";
+            for(int i = 0; i < item_Set_Count; i++)
+            {
+                ret += item_Sets[i].get_All_Profit_Str();
+            }
+            ret = ret.Substring(0, ret.Length - 1);
+
+            return ret;
+        }
+
         public string[] get_Item_Set_Str(int index)
         {
             return item_Sets[index].To_String().Split("@");

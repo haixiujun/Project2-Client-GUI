@@ -21,8 +21,8 @@ namespace Project2_Client_GUI
 
         public NetworkSendData()
         {
-            //server_IP = Dns.GetHostEntry("jiaaoyang.top");server_IP.AddressList[0]
-            server_Interface = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 40400);
+            server_IP = Dns.GetHostEntry("jiaaoyang.top");
+            server_Interface = new IPEndPoint(server_IP.AddressList[0], 40400);
             link_To_Server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         }
         public void init_DE(DataExtraction de)
@@ -86,7 +86,7 @@ namespace Project2_Client_GUI
         {
             try
             {
-                byte[] cache_Receive = new byte[1024*1024*50];
+                byte[] cache_Receive = new byte[1024*1024];
                 byte[] clear_Array;
                 receive_Count = link_To_Server.Receive(cache_Receive);
                 clear_Array = cache_Receive.Take(receive_Count).ToArray();
