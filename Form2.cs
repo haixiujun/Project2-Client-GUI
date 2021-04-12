@@ -149,7 +149,7 @@ namespace Project2_Client_GUI
         private void button12_Click(object sender, EventArgs e)
         {
             int index = listBox1.SelectedIndex;
-            server_Linker.send_Data_To_Server(dataExtraction.get_Route_Str(index));
+            server_Linker.DSR(openFileDialog1.SafeFileName, index, listBox3);
         }
 
         private void button13_Click(object sender, EventArgs e)
@@ -159,7 +159,7 @@ namespace Project2_Client_GUI
 
         private void button14_Click(object sender, EventArgs e)
         {
-            
+            server_Linker.RSRA(listBox4);
 
         }
 

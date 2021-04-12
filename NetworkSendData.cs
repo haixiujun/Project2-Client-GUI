@@ -21,7 +21,7 @@ namespace Project2_Client_GUI
 
         public NetworkSendData()
         {
-            //server_IP = Dns.GetHostEntry("localhost");
+            //server_IP = Dns.GetHostEntry("jiaaoyang.top");server_IP.AddressList[0]
             server_Interface = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 40400);
             link_To_Server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         }
@@ -99,40 +99,27 @@ namespace Project2_Client_GUI
             return "Error";
         }
 
-        public void DSW(string fn, int index)
+
+        public void DSRA(ListBox listBox,string fn,int index)
         {
             try
             {
                 int state = get_Connect_State();
                 if (state == 1)
                 {
-                    send_Data_To_Server("DSW");
+                    send_Data_To_Server("DSRA");
                     string temp = read_Data_From_Server();
-
                     if (temp.Equals("OK"))
                     {
-                        int count = dataExtraction.get_items_Set_Count(index)*3;
-                        send_Data_To_Server(count.ToString());
-
+                        listBox.Items.Clear();
+                        send_Data_To_Server("OK");
                         temp = read_Data_From_Server();
-                        if (temp.Equals("OK"))
+                        while (!temp.Equals("NO"))
                         {
-                            int i = 0;
-                            do
-                            {
-                                string[] send = dataExtraction.get_DSW_Str(index, i);
-                                for(int j = 0; j < 3&&temp.Equals("OK"); j++)
-                                {
-                                    send_Data_To_Server(fn + "#" + index.ToString() + "#" + i.ToString() + "#" + send[j]);
-                                    temp= read_Data_From_Server();
-                                }
-
-
-                                i++;
-                            } while (temp.Equals("OK")&&i<count);
-
+                            listBox.Items.Add(temp.Replace('#', '|'));
+                            send_Data_To_Server("OK");
+                            temp = read_Data_From_Server();
                         }
-                        
                     }
                     else
                     {
@@ -146,6 +133,142 @@ namespace Project2_Client_GUI
                 Console.WriteLine(e.ToString());
             }
         }
+
+
+
+        public void RSRA(ListBox listBox)
+        {
+            try
+            {
+                int state = get_Connect_State();
+                if (state == 1)
+                {
+                    send_Data_To_Server("RSRA");
+                    string temp = read_Data_From_Server();
+                    if (temp.Equals("OK"))
+                    {
+                        listBox.Items.Clear();
+                        send_Data_To_Server("OK");
+                        temp = read_Data_From_Server();
+                        while (!temp.Equals("NO"))
+                        {
+                            listBox.Items.Add(temp.Replace('#', '|'));
+                            send_Data_To_Server("OK");
+                            temp = read_Data_From_Server();
+                        }
+                    }
+                    else
+                    {
+                        return;
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        public void DSW(string fn, int index)
+        {
+            try
+            {
+                int state = get_Connect_State();
+                if (state == 1)
+                {
+                    send_Data_To_Server("DSW");
+                    string temp = read_Data_From_Server();
+
+                    if (temp.Equals("OK"))
+                    {
+                        int count = dataExtraction.get_items_Set_Count(index) * 3;
+                        send_Data_To_Server(count.ToString());
+
+                        temp = read_Data_From_Server();
+                        if (temp.Equals("OK"))
+                        {
+                            int i = 0;
+                            do
+                            {
+                                string[] send = dataExtraction.get_DSW_Str(index, i);
+                                for (int j = 0; j < 3 && temp.Equals("OK"); j++)
+                                {
+                                    send_Data_To_Server(fn + "#" + index.ToString() + "#" + i.ToString() + "#" + send[j]);
+                                    temp = read_Data_From_Server();
+                                }
+
+
+                                i++;
+                            } while (temp.Equals("OK") && i < count);
+
+                        }
+
+                    }
+                    else
+                    {
+                        return;
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        public void DSR(string fn,int index,ListBox listBox)
+        {
+            try
+            {
+                int state = get_Connect_State();
+                if (state == 1)
+                {
+                    send_Data_To_Server("DSR");
+                    string temp = read_Data_From_Server();
+
+                    if (temp.Equals("OK"))
+                    {
+                        listBox.Items.Clear();
+                        send_Data_To_Server(fn + "#" + index.ToString());
+
+                        temp = read_Data_From_Server();
+                        if (temp.Equals("OK"))
+                        {
+
+                            send_Data_To_Server("OK");
+
+                            do
+                            {
+                                temp = read_Data_From_Server();
+                                if (temp.Equals("NO"))
+                                {
+                                    return;
+                                }
+                                else
+                                {
+                                    temp = temp.Replace("#", "|");
+                                    listBox.Items.Add(temp);
+                                    send_Data_To_Server("OK");
+                                }
+                            } while (!temp.Equals("NO"));
+                        }
+                       
+                    }
+                    else
+                    {
+                        return;
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
 
 
         public void RSW(string fn,int index)
