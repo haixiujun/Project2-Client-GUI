@@ -14,6 +14,7 @@ namespace Project2_Client_GUI
             if (x == null) return -1;
             if (y == null) return 1;
             {
+                
                 decimal temp = (x.get_Radio(2) - y.get_Radio(2));
                 if (temp > 0) return 1;
                 else if (temp < 0) return -1;
