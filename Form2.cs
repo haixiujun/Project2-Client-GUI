@@ -198,30 +198,35 @@ namespace Project2_Client_GUI
 
         private void button15_Click(object sender, EventArgs e)
         {
-
-            log += DateTime.Now.ToString() + ":Start Genetic Algorithm To Deal  Selected Data Set\n";
-            DateTime dt = DateTime.Now;
-            int index = listBox1.SelectedIndex;
-            string[] results = dataExtraction.genetic_Algorithm(index).Split("\n");
-            int[] route = new int[results.Length-1];
-            textBox2.Text = results[0];
-            listBox2.Items.Clear();
-            for(int i=0; i < dataExtraction.get_items_Set_Count(index); i++)
+            ThreadPool.QueueUserWorkItem((obj) =>
             {
-                if (results[i + 1].Equals("4"))
+                log += DateTime.Now.ToString() + ":Start Genetic Algorithm To Deal  Selected Data Set\n";
+                DateTime dt = DateTime.Now;
+                int index = listBox1.SelectedIndex;
+                string[] results = dataExtraction.genetic_Algorithm(index).Split("\n");
+                int[] route = new int[results.Length - 1];
+                textBox2.Text = results[0];
+                listBox2.Items.Clear();
+                int type = 0;
+                for (int i = 0; i < dataExtraction.get_items_Set_Count(index); i++)
                 {
-                    results[i + 1] = "-1";
-                    
+                    type = Convert.ToInt32(results[i + 1]);
+                    if (type == 3)
+                    {
+                        type = -1;
+                    }
+                    route[i] = type;
+                    listBox2.Items.Add(route[i]);
+
                 }
-                route[i] = Convert.ToInt32(results[i + 1]);
-                listBox2.Items.Add(results[i + 1]);
+                dataExtraction.set_Result(index, Convert.ToInt32(results[0]));
+                dataExtraction.set_Route(index, route);
+                DateTime dtt = DateTime.Now;
+                textBox3.Text = Convert.ToString((dtt - dt).TotalSeconds);
+                log += DateTime.Now.ToString() + ":Genetic Algorithm To Deal  Selected Data Set Finished\n";
+
+            });
                 
-            }
-            dataExtraction.set_Result(index,Convert.ToInt32(results[0]));
-            dataExtraction.set_Route(index, route);
-            DateTime dtt = DateTime.Now;
-            textBox3.Text = Convert.ToString((dtt - dt).TotalSeconds);
-            log += DateTime.Now.ToString() + ":Genetic Algorithm To Deal  Selected Data Set Finished\n";
         }
 
         private void timer1_Tick(object sender, EventArgs e)

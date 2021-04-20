@@ -18,6 +18,8 @@ namespace Project2_Client_GUI
         private int[,] dynamic_Array;
         private int is_Dynamic;
 
+
+
         public OutputToFile(string f, int m,int[] r,int[,] d)
         {
             file_Path = f;

@@ -286,6 +286,8 @@ namespace Project2_Client_GUI
             string weight = data_Sets[index].get_All_Weight_Str();
             try
             {
+
+
                 sw.WriteLine(item_Set_Count);
                 sw.WriteLine(cubage);
                 sw.WriteLine(profit);
